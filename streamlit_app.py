@@ -16,11 +16,11 @@ turns = (0)
 def yournum():
     global turns
     ans = st.text_input("What is your number?: ", key = 'mynum')
-    if st.session_state.key['mynum'] in ("q","quit"):
+    if st.session_state['mynum'] in ("q","quit"):
         quit()
     else:
         try:
-            rnum(int(st.session_state.key['mynum']))
+            rnum(int(st.session_state['mynum']))
         except:
             st.text("Try a number...\n")
             yournum()
