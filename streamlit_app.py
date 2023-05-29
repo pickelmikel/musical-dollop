@@ -3,6 +3,10 @@
 import streamlit as st
 from random import randint
 
+if 'mynum' not in st.session_state:
+    st.session_state['mynum'] = 0
+
+
 rnum_ = randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
 no = {"n","no","nope","bye"}
@@ -11,7 +15,7 @@ turns = (0)
 
 def yournum():
     global turns
-    ans = st.text_input("What is your number?: ", key = ans)
+    ans = st.text_input("What is your number?: ", key = 'mynum')
     turns += 1
     while turns < 3:
         if ans in ("q","quit"):
