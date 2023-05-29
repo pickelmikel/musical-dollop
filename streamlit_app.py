@@ -1,6 +1,6 @@
 
 
-import sreamlit as st
+import streamlit as st
 from random import randint
 
 rnum_ = randint(0,255)
