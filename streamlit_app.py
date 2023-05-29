@@ -3,10 +3,8 @@
 import streamlit as st
 from random import randint
 
-if 'mynum' not in st.session_state:
-    st.session_state['mynum'] = ''
-if 'trya' not in st.session_state:
-    st.session_state['trya'] = ''
+
+
 
 rnum_ = randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
@@ -15,8 +13,10 @@ welcome = "Welcome to this randow number generator, please pick a number between
 turns = (0)
 
 def yournum():
-    global turns
+    if 'mynum' not in st.session_state:
+        st.session_state['mynum'] = ''
     ans = st.text_input("What is your number?: ", key = 'mynum')
+    
     if st.session_state['mynum'] in ("q","quit"):
         quit()
     else:
@@ -39,6 +39,8 @@ def rnum(x):
     yournum()
 
 def ta():
+    if 'trya' not in st.session_state:
+        st.session_state['trya'] = ''
     ta_ = st.text_input("Do you want to try again?: ", key = 'trya').lower()
     if st.session_state['trya'] in yes:
         rs()
