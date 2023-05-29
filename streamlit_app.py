@@ -11,7 +11,7 @@ turns = (0)
 
 def yournum():
     global turns
-    ans = st.text_input("What is your number?: ", key = "ans")
+    ans = st.text_input("What is your number?: ", key = ans)
     turns += 1
     while turns < 3:
         if ans in ("q","quit"):
