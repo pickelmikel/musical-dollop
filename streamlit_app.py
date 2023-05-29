@@ -1,6 +1,6 @@
 
 
-
+import sreamlit as st
 from random import randint
 
 rnum_ = randint(0,255)
@@ -11,7 +11,7 @@ turns = (0)
 
 def yournum():
     global turns
-    ans = input("What is your number?: ")
+    ans = st.text_input("What is your number?: ")
     turns += 1
     while turns < 3:
         if ans in ("q","quit"):
@@ -20,26 +20,26 @@ def yournum():
             try:
                 rnum(int(ans))
             except:
-                print("Try a number...\n")
+                st.text("Try a number...\n")
                 yournum()
     else:
-        print("You are out of turns")
+        st.text("You are out of turns")
         rs()
 
 def rnum(x):
     if x > rnum_:
         hi = x - rnum_
-        print("Your number is ", hi, " higher than the random number")
+        st.text("Your number is ", hi, " higher than the random number")
     elif x < rnum_:
         lo = rnum_ - x
-        print("Your number is ", lo, " lower than the random number")
+        st.text("Your number is ", lo, " lower than the random number")
     elif x == rnum_:
-        print("Your number is exactly the random number, awesome!")
+        st.text("Your number is exactly the random number, awesome!")
         ta()
     yournum()
 
 def ta():
-    ta_ = input("Do you want to try again?: ").lower()
+    ta_ = st.text_input("Do you want to try again?: ").lower()
     if ta in yes:
         rs()
     elif ta in no:
@@ -52,9 +52,9 @@ def rs():
     global turns
     rnum_ = randint(0,255)
     turns = (0)
-    print(welcome)
+    st.text(welcome)
     yournum()
 
 #--- MAIN RUN CODE ---#
-print(welcome)
-yournum()   
+st.text(welcome)
+yournum()
