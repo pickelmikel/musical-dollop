@@ -13,8 +13,7 @@ welcome = "Welcome to this randow number generator, please pick a number between
 turns = (0)
 
 def yournum():
-    if 'mynum' not in st.session_state:
-        st.session_state['mynum'] = ''
+    
     st.session_state['mynum'] = st.text_input("What is your number?: ", key = 'mynum')
     
     if st.session_state['mynum'] in ("q","quit"):
