@@ -16,20 +16,15 @@ turns = (0)
 def yournum():
     global turns
     ans = st.text_input("What is your number?: ", key = 'mynum')
-    turns += 1
-    while turns < 3:
-        if ans in ("q","quit"):
-            quit()
-        else:
-            try:
-                rnum(int(ans))
-            except:
-                st.text("Try a number...\n")
-                yournum()
+    if ans in ("q","quit"):
+        quit()
     else:
-        st.text("You are out of turns")
-        rs()
-
+        try:
+            rnum(int(ans))
+        except:
+            st.text("Try a number...\n")
+            yournum()
+            
 def rnum(x):
     if x > rnum_:
         hi = x - rnum_
