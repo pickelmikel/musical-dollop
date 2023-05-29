@@ -5,7 +5,8 @@ from random import randint
 
 if 'mynum' not in st.session_state:
     st.session_state['mynum'] = ''
-
+if 'trya' not in st.session_state:
+    st.session_state['trya'] = ''
 
 rnum_ = randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
@@ -38,10 +39,10 @@ def rnum(x):
     yournum()
 
 def ta():
-    ta_ = st.text_input("Do you want to try again?: ").lower()
-    if ta in yes:
+    ta_ = st.text_input("Do you want to try again?: ", key = 'trya').lower()
+    if st.session_state['trya'] in yes:
         rs()
-    elif ta in no:
+    elif st.session_state['trya'] in no:
         quit()
     else:
         yournum()
