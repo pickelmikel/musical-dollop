@@ -14,7 +14,7 @@ turns = (0)
 
 def yournum():
     
-    st.session_state['mynum'] = st.text_input("What is your number?: ", key = 'mynum')
+    st.session_state['mynum'] = st.text_input("What is your number?: ")
     
     if st.session_state['mynum'] in ("q","quit"):
         quit()
