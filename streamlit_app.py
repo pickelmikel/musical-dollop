@@ -1,61 +1,84 @@
-
-
 import streamlit as st
-from random import randint
+import time
 
-
-
-
-rnum_ = randint(0,255)
-yes = {"y","yes","yeah","ok","sure"}
-no = {"n","no","nope","bye"}
-welcome = "Welcome to this randow number generator, please pick a number between 0 and 255.\nHit q or type quit when you have had enough :)\n"
-turns = (0)
-
-def yournum():
+class Timer:
+    def __init__(self, name):
+        self.name = name
+        self.start_time = None
+        self.elapsed_time = 0
+        self.running = False
     
-    st.session_state['mynum'] = st.text_input("What is your number?: ")
+    def start(self):
+        if not self.running:
+            self.start_time = time.time()
+            self.running = True
     
-    if st.session_state['mynum'] in ("q","quit"):
-        quit()
-    else:
-        try:
-            rnum(int(st.session_state['mynum']))
-        except:
-            st.text("Try a number...\n")
-            yournum()
+    def stop(self):
+        if self.running:
+            self.elapsed_time += time.time() - self.start_time
+            self.running = False
+    
+    def reset(self):
+        self.start_time = None
+        self.elapsed_time = 0
+        self.running = False
+
+class TimerApp:
+    def __init__(self):
+        self.timers = [Timer(f"Timer {i+1}") for i in range(4)]
+        self.create_widgets()
+    
+    def create_widgets(self):
+        self.timer_labels = []
+        self.start_buttons = []
+        self.stop_buttons = []
+        self.reset_buttons = []
+        
+        for i in range(4):
+            timer_label = st.empty()
+            self.timer_labels.append(timer_label)
             
-def rnum(x):
-    if x > rnum_:
-        hi = x - rnum_
-        st.text("Your number is ", hi, " higher than the random number")
-    elif x < rnum_:
-        lo = rnum_ - x
-        st.text("Your number is ", lo, " lower than the random number")
-    elif x == rnum_:
-        st.text("Your number is exactly the random number, awesome!")
-        ta()
-    yournum()
+            start_button = st.button(f"Start Timer {i+1}", key=f"start_{i}")
+            self.start_buttons.append(start_button)
+            
+            stop_button = st.button(f"Stop Timer {i+1}", key=f"stop_{i}")
+            self.stop_buttons.append(stop_button)
+            
+            reset_button = st.button(f"Reset Timer {i+1}", key=f"reset_{i}")
+            self.reset_buttons.append(reset_button)
+    
+    def start_timer(self, i):
+        self.timers[i].start()
+        self.update_timers()
+    
+    def stop_timer(self, i):
+        self.timers[i].stop()
+        self.update_timers()
+    
+    def reset_timer(self, i):
+        self.timers[i].reset()
+        self.update_timers()
+    
+    def update_timers(self):
+        for i in range(4):
+            if self.timers[i].running:
+                elapsed_time = self.timers[i].elapsed_time + time.time() - self.timers[i].start_time
+            else:
+                elapsed_time = self.timers[i].elapsed_time
+            
+            minutes = int(elapsed_time // 60)
+            seconds = int(elapsed_time % 60)
+            self.timer_labels[i].text(f"{self.timers[i].name}: {minutes:02d}:{seconds:02d}")
+        
+        time.sleep(0.1)
+        self.update_timers()
 
-def ta():
-    if 'trya' not in st.session_state:
-        st.session_state['trya'] = ''
-    ta_ = st.text_input("Do you want to try again?: ", key = 'trya').lower()
-    if st.session_state['trya'] in yes:
-        rs()
-    elif st.session_state['trya'] in no:
-        quit()
-    else:
-        yournum()
-
-def rs():
-    global rnum 
-    global turns
-    rnum_ = randint(0,255)
-    turns = (0)
-    st.text(welcome)
-    yournum()
-
-#--- MAIN RUN CODE ---#
-st.text(welcome)
-yournum()
+app = TimerApp()
+for i in range(4):
+    if app.start_buttons[i]:
+        app.start_timer(i)
+    if app.stop_buttons[i]:
+        app.stop_timer(i)
+    if app.reset_buttons[i]:
+        app.reset_timer(i)
+app.update_timers()
