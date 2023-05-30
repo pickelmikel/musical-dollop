@@ -1,55 +1,77 @@
 import streamlit as st
-from random import randint
 
-rnum_ = randint(0,255)
-yes = {"y","yes","yeah","ok","sure"}
-no = {"n","no","nope","bye"}
-welcome = "Welcome to this randow number generator, please pick a number between 0 and 255.\nHit q or type quit when you have had enough :)\n"
-turns = (0)
+# initialize the board
+board = [' ' for _ in range(9)]
 
-def yournum():
-    global turns
-    ans = st.text_input("What is your number?: ", key="num_input")
-    turns += 1
-    if ans in ("q","quit"):
-        quit()
-    else:
-        try:
-            rnum(int(ans))
-        except:
-            st.write("Try a number...\n")
-            yournum()
+# define the function to print the board
+def print_board():
+    row1 = '|{}|{}|{}|'.format(board[0], board[1], board[2])
+    row2 = '|{}|{}|{}|'.format(board[3], board[4], board[5])
+    row3 = '|{}|{}|{}|'.format(board[6], board[7], board[8])
+    st.write(row1)
+    st.write(row2)
+    st.write(row3)
 
-def rnum(x):
-    global rnum_
-    if x > rnum_:
-        hi = x - rnum_
-        st.write("Your number is ", hi, " higher than the random number")
-    elif x < rnum_:
-        lo = rnum_ - x
-        st.write("Your number is ", lo, " lower than the random number")
-    elif x == rnum_:
-        st.write("Your number is exactly the random number, awesome!")
-        rnum_ = None
-        ta()
+# define the function to check if a player has won
+def check_win(player):
+    # check rows
+    if board[0] == board[1] == board[2] == player:
+        return True
+    if board[3] == board[4] == board[5] == player:
+        return True
+    if board[6] == board[7] == board[8] == player:
+        return True
+    # check columns
+    if board[0] == board[3] == board[6] == player:
+        return True
+    if board[1] == board[4] == board[7] == player:
+        return True
+    if board[2] == board[5] == board[8] == player:
+        return True
+    # check diagonals
+    if board[0] == board[4] == board[8] == player:
+        return True
+    if board[2] == board[4] == board[6] == player:
+        return True
+    return False
 
-def ta():
-    ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
-    if ta in yes:
-        rs()
-    elif ta in no:
-        quit()
-    else:
-        yournum()
+# define the main game function
+def play_game():
+    st.write("Welcome to Tic Tac Toe!")
+    st.write("Player 1 will be X and Player 2 will be O.")
+    st.write("The board is numbered from 1 to 9 as shown below:")
+    st.write("|1|2|3|")
+    st.write("|4|5|6|")
+    st.write("|7|8|9|")
+    player = 1
+    while True:
+        print_board()
+        if player == 1:
+            st.write("Player 1's turn")
+        else:
+            st.write("Player 2's turn")
+        choice = st.number_input("Enter a number between 1-9: ", min_value=1, max_value=9, key=f"player_{player}")
+        if board[choice-1] == ' ':
+            if player == 1:
+                board[choice-1] = 'X'
+            else:
+                board[choice-1] = 'O'
+        else:
+            st.write("That space is already taken!")
+            continue
+        if check_win('X'):
+            print_board()
+            st.write("Player 1 wins!")
+            break
+        if check_win('O'):
+            print_board()
+            st.write("Player 2 wins!")
+            break
+        if ' ' not in board:
+            print_board()
+            st.write("It's a tie!")
+            break
+        player = 2 if player == 1 else 1
 
-def rs():
-    global rnum_ 
-    global turns
-    if rnum_ is None:
-        rnum_ = randint(0,255)
-    turns = (0)
-    st.write(welcome)
-    yournum()
-
-#--- MAIN RUN CODE ---#
-rs()
+# run the game
+play_game()
