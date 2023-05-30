@@ -21,18 +21,16 @@ def yournum():
             yournum()
 
 def rnum(x):
+    global rnum_
     if x > rnum_:
         hi = x - rnum_
         st.write("Your number is ", hi, " higher than the random number")
-        #st.write("Turn number: ", turn)
-        
     elif x < rnum_:
         lo = rnum_ - x
         st.write("Your number is ", lo, " lower than the random number")
-        #st.write("Turn number: ", turn)
-        
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
+        rnum_ = None
         ta()
 
 def ta():
@@ -45,9 +43,10 @@ def ta():
         yournum()
 
 def rs():
-    global rnum 
+    global rnum_ 
     global turns
-    rnum_ = randint(0,255)
+    if rnum_ is None:
+        rnum_ = randint(0,255)
     turns = (0)
     st.write(welcome)
     yournum()
