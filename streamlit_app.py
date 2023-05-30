@@ -1,4 +1,3 @@
-
 import streamlit as st
 from random import randint
 
@@ -10,7 +9,7 @@ turns = (0)
 
 def yournum():
     global turns
-    ans = st.text_input("What is your number?: ")
+    ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
     while turns < 3:
         if ans in ("q","quit"):
@@ -38,7 +37,7 @@ def rnum(x):
     yournum()
 
 def ta():
-    ta_ = st.text_input("Do you want to try again?: ").lower()
+    ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
     if ta in yes:
         rs()
     elif ta in no:
