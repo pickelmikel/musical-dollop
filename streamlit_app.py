@@ -52,5 +52,4 @@ def rs():
     yournum()
 
 #--- MAIN RUN CODE ---#
-st.write(welcome)
-yournum()
+rs()
