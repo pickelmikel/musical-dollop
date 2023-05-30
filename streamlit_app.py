@@ -25,12 +25,12 @@ def rnum(x):
         hi = x - rnum_
         st.write("Your number is ", hi, " higher than the random number")
         st.write("Turn number: ", turn)
-        yournum()
+        
     elif x < rnum_:
         lo = rnum_ - x
         st.write("Your number is ", lo, " lower than the random number")
         st.write("Turn number: ", turn)
-        yournum()
+        
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
         ta()
