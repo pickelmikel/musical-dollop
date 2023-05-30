@@ -52,7 +52,11 @@ class TimerApp:
         self.update_timers()
     
     def pause_timer(self, i):
-        self.timers[i].pause()
+        if self.timers[i].running:
+            self.timers[i].pause()
+        else:
+            self.timers[i].start_time = time.time() - self.timers[i].elapsed_time
+            self.timers[i].running = True
         self.update_timers()
     
     def reset_timer(self, i):
