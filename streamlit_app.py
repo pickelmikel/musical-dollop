@@ -13,7 +13,7 @@ class Timer:
             self.start_time = time.time()
             self.running = True
     
-    def stop(self):
+    def pause(self):
         if self.running:
             self.elapsed_time += time.time() - self.start_time
             self.running = False
@@ -31,7 +31,7 @@ class TimerApp:
     def create_widgets(self):
         self.timer_labels = []
         self.start_buttons = []
-        self.stop_buttons = []
+        self.pause_buttons = []
         self.reset_buttons = []
         
         for i in range(4):
@@ -41,8 +41,8 @@ class TimerApp:
             start_button = st.button(f"Start Timer {i+1}", key=f"start_{i}")
             self.start_buttons.append(start_button)
             
-            stop_button = st.button(f"Stop Timer {i+1}", key=f"stop_{i}")
-            self.stop_buttons.append(stop_button)
+            pause_button = st.button(f"Pause Timer {i+1}", key=f"pause_{i}")
+            self.pause_buttons.append(pause_button)
             
             reset_button = st.button(f"Reset Timer {i+1}", key=f"reset_{i}")
             self.reset_buttons.append(reset_button)
@@ -51,8 +51,8 @@ class TimerApp:
         self.timers[i].start()
         self.update_timers()
     
-    def stop_timer(self, i):
-        self.timers[i].stop()
+    def pause_timer(self, i):
+        self.timers[i].pause()
         self.update_timers()
     
     def reset_timer(self, i):
@@ -68,17 +68,18 @@ class TimerApp:
             
             minutes = int(elapsed_time // 60)
             seconds = int(elapsed_time % 60)
-            self.timer_labels[i].text(f"{self.timers[i].name}: {minutes:02d}:{seconds:02d}")
+            milliseconds = int((elapsed_time - int(elapsed_time)) * 1000)
+            self.timer_labels[i].text(f"{self.timers[i].name}: {minutes:02d}:{seconds:02d}:{milliseconds:03d}")
         
-        time.sleep(0.1)
+        time.sleep(0.01)
         self.update_timers()
 
 app = TimerApp()
 for i in range(4):
     if app.start_buttons[i]:
         app.start_timer(i)
-    if app.stop_buttons[i]:
-        app.stop_timer(i)
+    if app.pause_buttons[i]:
+        app.pause_timer(i)
     if app.reset_buttons[i]:
         app.reset_timer(i)
 app.update_timers()
