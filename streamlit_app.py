@@ -11,18 +11,14 @@ def yournum():
     global turns
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
-    while turns < 3:
-        if ans in ("q","quit"):
-            quit()
-        else:
-            try:
-                rnum(int(ans))
-            except:
-                st.write("Try a number...\n")
-                yournum()
+    if ans in ("q","quit"):
+        quit()
     else:
-        st.write("You are out of turns")
-        rs()
+        try:
+            rnum(int(ans))
+        except:
+            st.write("Try a number...\n")
+            yournum()
 
 def rnum(x):
     if x > rnum_:
@@ -34,7 +30,6 @@ def rnum(x):
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
         ta()
-    yournum()
 
 def ta():
     ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
