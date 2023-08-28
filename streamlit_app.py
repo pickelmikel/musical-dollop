@@ -4,7 +4,7 @@ from random import randint
 rnum_ = randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
 no = {"n","no","nope","bye"}
-welcome = "Welcome to this randow number generator, please pick a number between 0 and 255.\nHit q or type quit when you have had enough :)\n"
+welcome = "Welcome to this random number generator, please pick a number between 0 and 255.\nHit q or type quit when you have had enough :)\n"
 turns = (0)
 
 def yournum():
