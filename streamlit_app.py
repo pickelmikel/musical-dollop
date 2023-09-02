@@ -14,7 +14,7 @@ def yournum():
     turns += 1
     try:
         rnum(int(ans))
-        st.session_state['num_input'] = blank
+        
     except ValueError:
         st.write("Try a number...")
 
@@ -23,13 +23,15 @@ def rnum(x):
     if x > rnum_:
         hi = x - rnum_
         st.write("Your number is ", hi, " higher than the random number")
+        st.session_state['num_input'] = blank
     elif x < rnum_:
         lo = rnum_ - x
         st.write("Your number is ", lo, " lower than the random number")
+        st.session_state['num_input'] = blank
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
         rnum_ = None
-        ta()
+        
 
 def ta():
     ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
