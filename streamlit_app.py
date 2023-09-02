@@ -17,13 +17,12 @@ def yournum():
     global ans
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
-    ans.empty()
-    try:
-        
-        rnum(int(ans))
-        
-    except ValueError:
-        st.write("Try a number...")
+    if st.button("Enter"):
+        ans.empty()
+        try:
+            rnum(int(ans))
+        except ValueError:
+            st.write("Try a number...")
 
 def rnum(x):
     global rnum_
