@@ -10,7 +10,7 @@ blank = ''
 
 def yournum():
     global turns
-    ans = st.text_input("What is your number?: ", key="num_input", clear_on_submit=True)
+    ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
     try:
         rnum(int(ans))
