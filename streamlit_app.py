@@ -13,6 +13,7 @@ def yournum():
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
     try:
+        st.session_state['num_input'] = blank
         rnum(int(ans))
         
     except ValueError:
@@ -23,11 +24,11 @@ def rnum(x):
     if x > rnum_:
         hi = x - rnum_
         st.write("Your number is ", hi, " higher than the random number")
-        st.session_state['num_input'] = blank
+        
     elif x < rnum_:
         lo = rnum_ - x
         st.write("Your number is ", lo, " lower than the random number")
-        st.session_state['num_input'] = blank
+        
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
         rnum_ = None
