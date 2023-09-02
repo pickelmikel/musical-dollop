@@ -11,14 +11,10 @@ def yournum():
     global turns
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
-    if ans in ("q","quit"):
-        quit()
-    else:
-        try:
-            rnum(int(ans))
-        except:
-            st.write("Try a number...\n")
-            yournum()
+    try:
+        rnum(int(ans))
+    except DuplicateWidgetIDError:
+        yournum()
 
 def rnum(x):
     global rnum_
