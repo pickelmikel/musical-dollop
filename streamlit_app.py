@@ -13,7 +13,7 @@ def yournum():
     turns += 1
     try:
         rnum(int(ans))
-    except TypeError:
+    except ValueError:
         st.write("Try a number...")
 
 def rnum(x):
