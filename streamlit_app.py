@@ -8,8 +8,13 @@ welcome = "Welcome to this random number generator, please pick a number between
 turns = (0)
 blank = ''
 
+def clear_text_input():
+    text_input.empty()
+
+
 def yournum():
     global turns
+    global ans
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
     try:
@@ -23,11 +28,11 @@ def rnum(x):
     if x > rnum_:
         hi = x - rnum_
         st.write("Your number is ", hi, " higher than the random number")
-        
+        ans.on_change(clear_text_input)
     elif x < rnum_:
         lo = rnum_ - x
         st.write("Your number is ", lo, " lower than the random number")
-        
+        ans.on_change(clear_text_input)
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
         rnum_ = None
