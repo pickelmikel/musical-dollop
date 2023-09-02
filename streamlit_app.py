@@ -13,6 +13,7 @@ def yournum():
     turns += 1
     try:
         rnum(int(ans))
+        st.session_state['num_input'] = blank
     except ValueError:
         st.write("Try a number...")
 
