@@ -13,7 +13,7 @@ def yournum():
     turns += 1
     try:
         rnum(int(ans))
-    except DuplicateWidgetIDError:
+    except:
         yournum()
 
 def rnum(x):
