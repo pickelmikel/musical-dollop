@@ -13,8 +13,8 @@ def yournum():
     turns += 1
     try:
         rnum(int(ans))
-    except:
-        yournum()
+    except TypeError:
+        st.write("Try a number...")
 
 def rnum(x):
     global rnum_
