@@ -9,7 +9,7 @@ turns = (0)
 blank = ''
 
 def clear_text_input():
-    text_input.empty()
+    ans.empty()
 
 
 def yournum():
