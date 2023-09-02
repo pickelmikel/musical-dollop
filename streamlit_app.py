@@ -15,6 +15,8 @@ def clear_text_input():
 def yournum():
     global turns
     global ans
+    ans = 0
+    ans.empty()
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
     
@@ -28,11 +30,9 @@ def rnum(x):
     if x > rnum_:
         hi = x - rnum_
         st.write("Your number is ", hi, " higher than the random number")
-        ans.empty()
     elif x < rnum_:
         lo = rnum_ - x
         st.write("Your number is ", lo, " lower than the random number")
-        ans.empty()
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
         rnum_ = None
