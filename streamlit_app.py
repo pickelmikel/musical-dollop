@@ -22,15 +22,11 @@ def yournum():
 
 def rnum(x):
     global rnum_
-    global num_dist
-    num_dist = abs(list())
     if x > rnum_:
         hi = x - rnum_
-        num_dist += hi
         st.write("Your number is ", hi, " higher than the random number")
     elif x < rnum_:
         lo = rnum_ - x
-        num_dist += lo
         st.write("Your number is ", lo, " lower than the random number")
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
@@ -54,15 +50,6 @@ def rs():
     turns = (0)
     st.write(welcome)
     yournum()
-
-def high_scores():
-    pass
-
-
-
-
-
-
 
 #--- MAIN RUN CODE ---#
 st.write(welcome)
