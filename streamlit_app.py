@@ -17,23 +17,22 @@ def yournum():
     global ans
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
-    if st.button("Enter"):
-        ans.empty()
-        try:
-            rnum(int(ans))
-        except ValueError:
-            st.write("Try a number...")
+    
+    try:
+        rnum(int(ans))
+    except ValueError:
+        st.write("Try a number...")
 
 def rnum(x):
     global rnum_
     if x > rnum_:
         hi = x - rnum_
         st.write("Your number is ", hi, " higher than the random number")
-        
+        ans.empty()
     elif x < rnum_:
         lo = rnum_ - x
         st.write("Your number is ", lo, " lower than the random number")
-        
+        ans.empty()
     elif x == rnum_:
         st.write("Your number is exactly the random number, awesome!")
         rnum_ = None
