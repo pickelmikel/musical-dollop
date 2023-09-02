@@ -10,10 +10,9 @@ blank = ''
 
 def yournum():
     global turns
-    ans = st.text_input("What is your number?: ", key="num_input")
+    ans = st.text_input("What is your number?: ", key="num_input", clear_on_submit=True)
     turns += 1
     try:
-        st.session_state['num_input'] = blank
         rnum(int(ans))
         
     except ValueError:
