@@ -21,7 +21,7 @@ def yournum():
     try:
         rnum(int(ans))
     except ValueError:
-        st.write(f"Try a number...{turns}: of turns")
+        st.write("Try a number...")
 
 def rnum(x):
     global rnum_
