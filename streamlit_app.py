@@ -5,7 +5,7 @@ rnum_ = randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
 no = {"n","no","nope","bye"}
 welcome = "Welcome to this random number generator, please pick a number between 0 and 255.\n" #Hit q or type quit when you have had enough :)\n"
-turns = [0]
+turns = (0)
 blank = ''
 
 def clear_text_input():
