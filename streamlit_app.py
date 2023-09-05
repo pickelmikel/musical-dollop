@@ -15,8 +15,6 @@ def clear_text_input():
 def yournum():
     global turns
     global ans
-    ans = 0
-    ans.empty()
     ans = st.text_input("What is your number?: ", key="num_input")
     turns += 1
     
