@@ -38,7 +38,7 @@ def rnum(x):
             st.write("Your number is exactly the random number, awesome!")
             rnum_ = None
     except AttributeError:
-        continue
+        st.write("Pick another one...")
 
 def ta():
     ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
