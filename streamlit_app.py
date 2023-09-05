@@ -25,6 +25,7 @@ def yournum():
 
 def rnum(x):
     global rnum_
+    global turns
     turns = turns + 1
     try:
         if x > rnum_:
