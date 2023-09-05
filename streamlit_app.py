@@ -16,7 +16,7 @@ def yournum():
     global turns
     global ans
     ans = st.text_input("What is your number?: ", key="num_input")
-    turns += 1
+    
     
     try:
         rnum(int(ans))
@@ -26,6 +26,7 @@ def yournum():
 def rnum(x):
     global rnum_
     try:
+        turns += 1
         if x > rnum_:
             hi = x - rnum_
             st.write("Your number is ", hi, " higher than the random number")
