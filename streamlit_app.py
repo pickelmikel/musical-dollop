@@ -25,7 +25,7 @@ def yournum():
 
 def rnum(x):
     global rnum_
-    turns += 1
+    #turns += 1
     try:
         if x > rnum_:
             hi = x - rnum_
@@ -53,7 +53,7 @@ def rs():
     global turns
     if rnum_ is None:
         rnum_ = randint(0,255)
-    turns = (0)
+    #turns = (0)
     st.write(welcome)
     yournum()
 
