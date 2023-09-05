@@ -27,16 +27,18 @@ def yournum():
 
 def rnum(x):
     global rnum_
-    if x > rnum_:
-        hi = x - rnum_
-        st.write("Your number is ", hi, " higher than the random number")
-    elif x < rnum_:
-        lo = rnum_ - x
-        st.write("Your number is ", lo, " lower than the random number")
-    elif x == rnum_:
-        st.write("Your number is exactly the random number, awesome!")
-        rnum_ = None
-        
+    try:
+        if x > rnum_:
+            hi = x - rnum_
+            st.write("Your number is ", hi, " higher than the random number")
+        elif x < rnum_:
+            lo = rnum_ - x
+            st.write("Your number is ", lo, " lower than the random number")
+        elif x == rnum_:
+            st.write("Your number is exactly the random number, awesome!")
+            rnum_ = None
+    except:
+        pass
 
 def ta():
     ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
