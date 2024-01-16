@@ -48,7 +48,7 @@ def rnum(x):
         elif x < rnum_:
             lo = rnum_ - x
             st.write("Your number is ", lo, " lower than the random number")
-        elif x == rnum_:
+        elif x == 1:
             st.write("Your number is exactly the random number, awesome!")
             st.test_input("Nice going! What is your name?")            
             save_high_score(player_name, turns[0])
