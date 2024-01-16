@@ -16,7 +16,9 @@ def yournum():
     global turns
     global ans
     ans = st.text_input("What is your number?: ", key="num_input")
-    
+
+    if st.button("Enter"):
+        cleat_text_input()
     
     try:
         rnum(int(ans))
