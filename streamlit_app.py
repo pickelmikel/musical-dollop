@@ -7,13 +7,14 @@ no = {"n","no","nope","bye"}
 welcome = "Welcome to this random number generator, please pick a number between 0 and 255.\n" #Hit q or type quit when you have had enough :)\n"
 turns = [0]
 blank = ''
+player_name = None
 
 def clear_text_input():
     ans.empty()
 
-def save_high_score(score):
+def save_high_score(player_name, score):
     with open("high_scores.txt", "a") as file:
-        file.write(str(score) + "\n")
+        file.write(str(player_name) + " ..... " + str(score) + "\n")
 
 def show_top_scores():
     scores = []
@@ -47,9 +48,10 @@ def rnum(x):
         elif x < rnum_:
             lo = rnum_ - x
             st.write("Your number is ", lo, " lower than the random number")
-        elif x == 11:
+        elif x == rnum_:
             st.write("Your number is exactly the random number, awesome!")
-            save_high_score(turns[0])
+            st.test_input("Nice going! What is your name?")            
+            save_high_score(player_name, turns[0])
             turns[0] = 0
             show_top_scores()
             rnum_ = None
