@@ -31,6 +31,7 @@ def rnum(x):
         if x > rnum_:
             hi = x - rnum_
             st.write("Your number is ", hi, " higher than the random number")
+            clear_text_input()
         elif x < rnum_:
             lo = rnum_ - x
             st.write("Your number is ", lo, " lower than the random number")
