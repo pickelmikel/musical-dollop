@@ -11,12 +11,24 @@ blank = ''
 def clear_text_input():
     ans.empty()
 
+def save_high_score(score):
+    with open("high_scores.txt", "a") as file:
+        file.write(str(score) + "\n")
+
+def show_top_scores():
+    scores = []
+    with open("high_scores.txt", "r") as file:
+        for line in file:
+            scores.append(int(line.strip()))
+    scores.sort()
+    st.write("Top 10 High Scores:")
+    for i, score in enumerate(scores[:10]):
+        st.write(f"{i+1}. {score}")
 
 def yournum():
     global turns
     global ans
     ans = st.text_input("What is your number?: ", key="num_input")
-
     
     try:
         rnum(int(ans))
@@ -26,21 +38,23 @@ def yournum():
 def rnum(x):
     global rnum_
     global turns
-    #turns = turns + 1
+    turns[0] += 1
+    
     try:
         if x > rnum_:
             hi = x - rnum_
             st.write("Your number is ", hi, " higher than the random number")
-            clear_text_input()
         elif x < rnum_:
             lo = rnum_ - x
             st.write("Your number is ", lo, " lower than the random number")
         elif x == rnum_:
             st.write("Your number is exactly the random number, awesome!")
+            save_high_score(turns[0])
+            turns[0] = 0
+            show_top_scores()
             rnum_ = None
     except AttributeError:
         st.write("Pick another one...")
-    clear_text_input()
 
 def ta():
     ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
@@ -56,7 +70,7 @@ def rs():
     global turns
     if rnum_ is None:
         rnum_ = randint(0,255)
-    #turns = (0)
+    turns[0] = 0
     st.write(welcome)
     yournum()
 
