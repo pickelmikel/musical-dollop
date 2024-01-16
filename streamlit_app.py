@@ -17,8 +17,6 @@ def yournum():
     global ans
     ans = st.text_input("What is your number?: ", key="num_input")
 
-    if st.button("Enter"):
-        cleat_text_input()
     
     try:
         rnum(int(ans))
@@ -41,6 +39,7 @@ def rnum(x):
             rnum_ = None
     except AttributeError:
         st.write("Pick another one...")
+    clear_text_input()
 
 def ta():
     ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
