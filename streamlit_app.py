@@ -10,7 +10,7 @@ blank = ''
 player_name = None
 
 def clear_text_input():
-    ans.empty()
+    st.session_state['num_input'] = ''
 
 def save_high_score(player_name, score):
     with open("high_scores.txt", "a") as file:
@@ -33,7 +33,7 @@ def yournum():
     
     try:
         rnum(int(ans))
-        ans.empty()
+        clear_text_input()
     except ValueError:
         st.write("Try a number...")
 
