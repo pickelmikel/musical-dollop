@@ -29,10 +29,10 @@ def show_top_scores():
 def yournum():
     global turns
     global ans
-    ans = st.text_input("What is your number?: ", key="num_input", on_change=clear_text_input)
+    ans = st.number_input("What is your number?: ", key="num_input", on_change=clear_text_input)
     
     try:
-        rnum(int(ans))
+        rnum(st.session_state['num_input'])
     except ValueError:
         st.write("Try a number...")
 
