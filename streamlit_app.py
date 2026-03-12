@@ -33,6 +33,7 @@ def yournum():
     
     try:
         rnum(int(ans))
+        ans.empty()
     except ValueError:
         st.write("Try a number...")
 
@@ -48,7 +49,7 @@ def rnum(x):
         elif x < rnum_:
             lo = rnum_ - x
             st.write("Your number is ", lo, " lower than the random number")
-        elif x == 1:
+        elif x == rnum_:
             st.write("Your number is exactly the random number, awesome!")
             player_name = st.text_input("Nice going! What is your name?")            
             save_high_score(player_name, turns[0])
