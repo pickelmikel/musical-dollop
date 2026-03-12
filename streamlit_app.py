@@ -32,7 +32,7 @@ def yournum():
     ans = st.text_input("What is your number?: ", key="num_input", on_change=clear_text_input)
     
     try:
-        rnum(int(st.session_state['num_input']))
+        rnum(int(ans))
     except ValueError:
         st.write("Try a number...")
 
