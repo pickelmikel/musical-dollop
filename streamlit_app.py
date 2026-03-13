@@ -5,7 +5,7 @@ rnum_ = 5#randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
 no = {"n","no","nope","bye"}
 welcome = "Welcome to this random number generator, please pick a number between 0 and 255.\n" #Hit q or type quit when you have had enough :)\n"
-turns = [0]
+turns = 0
 blank = ''
 player_name = None
 
@@ -40,7 +40,7 @@ def yournum():
 def rnum(x):
     global rnum_
     global turns
-    turns[0] += 1
+    turns += 1
     
     try:
         if x > rnum_:
@@ -52,8 +52,8 @@ def rnum(x):
         elif x == rnum_:
             st.write(f"Your number is exactly the random number in {turns[0]} trys, awesome!")
             st.text_input("Nice going! What is your name?", key='pname')            
-            save_high_score(st.session_state['pname'], turns[0])
-            turns[0] = 0
+            save_high_score(st.session_state['pname'], turns)
+            turns = 0
             show_top_scores()
             rnum_ = None
     except AttributeError:
@@ -73,7 +73,7 @@ def rs():
     global turns
     if rnum_ is None:
         rnum_ = randint(0,255)
-    turns[0] = 0
+    turns = 0
     st.write(welcome)
     yournum()
 
