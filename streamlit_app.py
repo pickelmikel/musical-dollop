@@ -50,9 +50,9 @@ def rnum(x):
             lo = rnum_ - x
             st.write("Your number is ", lo, " lower than the random number")
         elif x == rnum_:
-            st.write("Your number is exactly the random number, awesome!")
-            player_name = st.text_input("Nice going! What is your name?")            
-            save_high_score(player_name, turns[0])
+            st.write(f"Your number is exactly the random number in {turns[0]} trys, awesome!")
+            st.text_input("Nice going! What is your name?", key='pname')            
+            save_high_score(st.session_state['pname'], turns[0])
             turns[0] = 0
             show_top_scores()
             rnum_ = None
