@@ -15,7 +15,7 @@ def clear_text_input():
 
 def save_high_score(player_name, score):
     with open("high_scores.txt", "a") as file:
-        file.write(str(player_name) + " ..... " + str(score) + "\n")
+        file.writelines(str(player_name) + " ..... " + str(score) + "\n")
 
 def show_top_scores():
     scores = []
