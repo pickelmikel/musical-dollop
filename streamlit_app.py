@@ -10,6 +10,7 @@ blank = ''
 player_name = None
 
 def clear_text_input():
+    st.session_state['last_num'] = st.session_state['num_input']
     st.session_state['num_input'] = ''
 
 def save_high_score(player_name, score):
@@ -32,7 +33,7 @@ def yournum():
     ans = st.text_input("What is your number?: ", key="num_input", on_change=clear_text_input)
     
     try:
-        rnum(int(ans))
+        rnum(int(st.session_state['last_num']))
     except ValueError:
         st.write("Try a number...")
 
