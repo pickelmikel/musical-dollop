@@ -1,21 +1,33 @@
 import streamlit as st
 from random import randint
 
-rnum_ = 5#randint(0,255)
+rnum_ = randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
 no = {"n","no","nope","bye"}
 welcome = "Welcome to this random number generator, please pick a number between 0 and 255.\n" #Hit q or type quit when you have had enough :)\n"
 turns = 0
 blank = ''
-player_name = None
+
+if 'player_name' not in st.session_state:
+    st.session_state['player_name'] = None
+if 'high_scores' not in st.session_state:
+    st.session_state['high_scores'] = []
+if 'turns' not in st.session_state:
+    st.session_state['turns'] = 0
 
 def clear_text_input():
     st.session_state['last_num'] = st.session_state['num_input']
     st.session_state['num_input'] = ''
 
-def save_high_score(player_name, score):
+def save_high_score(score):
+    #st.session_state['player_name'] =
+    st.session_state['player_name'] = st.text_input("Nice going! What is your name?")
     with open("high_scores.txt", "a") as file:
-        file.writelines(str(player_name) + " ..... " + str(score) + "\n")
+        file.writelines(str(st.session_state['player_name']) + " ..... " + str(score) + "\n")
+    
+
+def paste_score():
+    st.session_state['high_scores'].append(str(st.session_state['player_name']) + " ..... " + str(st.session_state['turns']) + "\n")
 
 def show_top_scores():
     scores = []
@@ -30,17 +42,19 @@ def show_top_scores():
 def yournum():
     global turns
     global ans
-    ans = st.text_input("What is your number?: ", key="num_input", on_change=clear_text_input)
+    st.session_state['player_name'] = ans = st.text_input("What is your number?: ", key="num_input", on_change=clear_text_input)
     
     try:
         rnum(int(st.session_state['last_num']))
     except ValueError:
         st.write("Try a number...")
+    except KeyError:
+        st.write('Ready and waiting...')
 
 def rnum(x):
     global rnum_
     global turns
-    turns += 1
+    st.session_state['turns'] += 1
     
     try:
         if x > rnum_:
@@ -50,14 +64,15 @@ def rnum(x):
             lo = rnum_ - x
             st.write("Your number is ", lo, " lower than the random number")
         elif x == rnum_:
-            st.write(f"Your number is exactly the random number in {turns} trys, awesome!")
-            st.text_input("Nice going! What is your name?", key='pname')            
-            save_high_score(st.session_state['pname'], turns)
-            turns = 0
-            show_top_scores()
+            st.write(f"Your number is exactly the random number in {st.session_state['turns']} trys, awesome!")
+            #save_high_score(st.session_state['turns'])
+            st.session_state['turns'] = 0
+            
+            #show_top_scores()
             rnum_ = None
     except AttributeError:
         st.write("Pick another one...")
+    #st.write(st.session_state['high_scores'])
 
 def ta():
     ta_ = st.text_input("Do you want to try again?: ", key="try_again_input").lower()
