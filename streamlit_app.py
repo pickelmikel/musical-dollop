@@ -65,7 +65,7 @@ def rnum(x):
             st.write("Your number is ", lo, " lower than the random number")
         elif x == rnum_:
             st.write(f"Your number is exactly the random number in {st.session_state['turns']} trys, awesome!")
-            st.toast('Congrats!!!', duration='infinate')
+            st.toast('Congrats!!!', duration='infinite')
             #save_high_score(st.session_state['turns'])
             st.session_state['turns'] = 0
             
