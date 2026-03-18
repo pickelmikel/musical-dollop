@@ -66,6 +66,7 @@ def rnum(x):
         elif x == rnum_:
             st.write(f"Your number is exactly the random number in {st.session_state['turns']} trys, awesome!")
             st.balloons()
+            st.snow()
             #save_high_score(st.session_state['turns'])
             st.session_state['turns'] = 0
             
