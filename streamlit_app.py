@@ -1,7 +1,7 @@
 import streamlit as st
 from random import randint
 
-rnum_ = randint(0,255)
+rnum_ = 5#randint(0,255)
 yes = {"y","yes","yeah","ok","sure"}
 no = {"n","no","nope","bye"}
 welcome = "Welcome to this random number generator, please pick a number between 0 and 255.\n" #Hit q or type quit when you have had enough :)\n"
@@ -65,6 +65,7 @@ def rnum(x):
             st.write("Your number is ", lo, " lower than the random number")
         elif x == rnum_:
             st.write(f"Your number is exactly the random number in {st.session_state['turns']} trys, awesome!")
+            st.balloons()
             #save_high_score(st.session_state['turns'])
             st.session_state['turns'] = 0
             
